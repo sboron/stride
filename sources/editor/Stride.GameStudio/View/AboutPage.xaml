@@ -39,6 +39,7 @@
       <TextBlock Grid.Row="0" Grid.Column="0"
                  HorizontalAlignment="Left" VerticalAlignment="Center">
         <Run Text="{sd:Localize Stride version, Context=About}" /> <Run Text="{x:Static gameStudio:StrideGameStudio.EditorVersionWithMetadata}" /><LineBreak />
+        <Run Text="{x:Static gameStudio:StrideGameStudio.CopyrightText3}" /><LineBreak />
         <Run Text="{x:Static gameStudio:StrideGameStudio.CopyrightText1}" /><LineBreak />
         <Run Text="{x:Static gameStudio:StrideGameStudio.CopyrightText2}" /><LineBreak />
         <!-- License -->
