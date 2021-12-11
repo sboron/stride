@@ -9,7 +9,7 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     AllowsTransparency="True"
-    Background="#1A1A1D"
+    Background="#202429"
     Width="480"
     Height="380"
     ResizeMode="NoResize">
@@ -29,7 +29,7 @@
     <CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand"/>
   </Window.CommandBindings>
   <Grid>
-    <Button HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="#FFFFFF" Background="#1A1A1D" Command="{x:Static ApplicationCommands.Close}" Content="X" Padding="4" x:Name="CloseButton" Visibility="Hidden" />
+    <Button HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="#FFFFFF" Background="#202429" Command="{x:Static ApplicationCommands.Close}" Content="X" Padding="4" x:Name="CloseButton" Visibility="Hidden" />
     <StackPanel Orientation="Vertical" Margin="10">
       <Image x:Name="Logo"
            HorizontalAlignment="Center" VerticalAlignment="Center"

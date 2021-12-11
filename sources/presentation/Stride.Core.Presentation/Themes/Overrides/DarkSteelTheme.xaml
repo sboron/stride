@@ -77,7 +77,7 @@
   <SolidColorBrush x:Key="TextBoxBackgroundBrush" Color="#FF4D4D4D"/>
   <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#4A4A4C"/>
   <SolidColorBrush x:Key="MenuHoverBrush" Color="#333334"/>
-  <SolidColorBrush x:Key="PropertyGridItemHoverBrush" Color="#FF525252" />
+  <SolidColorBrush x:Key="PropertyGridItemHoverBrush" Color="#FF191b21" />
 
   <SolidColorBrush x:Key="CheckBoxBorderFocusBrush" Color="#FFE5E5E5"/>
   <SolidColorBrush x:Key="HoverTextBorderBrush" Color="#FF6A6A6A"/>
@@ -96,7 +96,7 @@
   <SolidColorBrush x:Key="ToolBarSubMenuBackground" Color="#FFFDFDFD"/>
   <SolidColorBrush x:Key="ToolBarMenuBorder" Color="#FFFFFFFF"/>
   <SolidColorBrush x:Key="InnerExpanderBorderBrush" Color="#FF424242" />
-  <SolidColorBrush x:Key="InnerExpanderBackgroundBrush" Color="#FF525252"/>
+  <SolidColorBrush x:Key="InnerExpanderBackgroundBrush" Color="#FF191b21"/>
   <SolidColorBrush x:Key="ToolBarBackgroundBrush" Color="#FF303033"/>
 
   <SolidColorBrush x:Key="MenuBlueGlyphs" Color="#007ACC" />

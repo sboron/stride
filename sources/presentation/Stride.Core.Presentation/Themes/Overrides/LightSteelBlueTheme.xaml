@@ -138,7 +138,7 @@
   </LinearGradientBrush>
 
   <!-- Environment -->
-  <SolidColorBrush x:Key="MainWindowActiveCaptionTextBrush" Color="#525252"/>
+  <SolidColorBrush x:Key="MainWindowActiveCaptionTextBrush" Color="#191b21"/>
   <SolidColorBrush x:Key="MainWindowActiveDefaultBorderBrush" Color="#9B9FB9"/>
   <SolidColorBrush x:Key="MainWindowButtonActiveBorderBrush" Color="Transparent"/>
   <SolidColorBrush x:Key="MainWindowButtonDownBrush" Color="#007ACC"/>
@@ -149,7 +149,7 @@
   <SolidColorBrush x:Key="MainWindowButtonHoverInactiveBorderBrush" Color="#D8FFFFFF"/>
   <SolidColorBrush x:Key="MainWindowButtonInactiveBorderBrush" Color="Transparent"/>
   <SolidColorBrush x:Key="MainWindowInactiveBorderBrush" Color="#CCCEDB"/>
-  <SolidColorBrush x:Key="MainWindowInactiveCaptionTextBrush" Color="#99525252"/>
+  <SolidColorBrush x:Key="MainWindowInactiveCaptionTextBrush" Color="#99191b21"/>
   <SolidColorBrush x:Key="ScrollBarBrush" Color="#F5F5F5"/>
   <SolidColorBrush x:Key="ScrollBarArrowBackgroundBrush" Color="#F5F5F5"/>
   <SolidColorBrush x:Key="ScrollBarArrowGlyphBrush" Color="#868999"/>
