@@ -261,7 +261,7 @@
                                RelativeSource={RelativeSource AncestorType=sd:PropertyViewItem}, Mode=OneWay}" x:Name="Grid">
       <Border x:Name="PART_Name" MinHeight="26" Margin="6" Background="{StaticResource EmphasisColorBrush}"
                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ToolTip="{Binding Documentation}"/>
-      <DockPanel Margin="10,8" x:Name="HeaderDockPanel">
+      <DockPanel Background="Transparent" Margin="10,8" x:Name="HeaderDockPanel">
         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
           <Button Style="{StaticResource RemoveItemButtonStyle}"/>
           <Button Style="{StaticResource AddNewItemButtonStyle}"/>

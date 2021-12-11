@@ -81,9 +81,12 @@
   </ItemGroup>
   <!-- Resources -->
   <ItemGroup>
+    <Resource Include="Resources\Components\*.svg" />
     <Resource Include="Resources\Components\*.png" />
     <Resource Include="Resources\Gizmos\*.png" />
+    <Resource Include="Resources\Gizmos\*.svg" />
     <Resource Include="Resources\Icons\*.png" />
+    <Resource Include="Resources\Icons\*.svg" />
     <Compile Update="Resources\Strings\KeyGestures.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

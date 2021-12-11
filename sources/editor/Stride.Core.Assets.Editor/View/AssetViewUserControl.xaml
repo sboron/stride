@@ -32,14 +32,14 @@
         <DataTemplate x:Key="AssetTileView">
           <DataTemplate.Resources>
             <DataTemplate x:Key="ItemTemplate" DataType="{x:Type viewModel:ISessionObjectViewModel}">
-              <HeaderedContentControl SnapsToDevicePixels="True" ToolTipService.InitialShowDelay="1">
+              <HeaderedContentControl  Background="Transparent" SnapsToDevicePixels="True" ToolTipService.InitialShowDelay="1">
                 <i:Interaction.Behaviors>
                   <sd:OnEventCommandBehavior EventName="MouseDoubleClick" Command="{Binding AssetDoubleClick, RelativeSource={RelativeSource AncestorType=view:AssetViewUserControl}}"
                                                CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=controls:EditableContentListBox}}"/>
                 </i:Interaction.Behaviors>
                 <HeaderedContentControl.Header>
                   <Grid Background="Transparent">
-                    <Border BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="2" CornerRadius="3" Margin="0,3,0,0">
+                    <Border BorderBrush="Transparent" BorderThickness="2" CornerRadius="3" Margin="0,3,0,0">
                       <Image Source="{Binding ThumbnailData.Presenter, Mode=OneWay}" RenderOptions.BitmapScalingMode="Linear"
                              Width="{Binding TileThumbnailSize, RelativeSource={RelativeSource AncestorType=view:AssetViewUserControl}}"
                              Height="{Binding TileThumbnailSize, RelativeSource={RelativeSource AncestorType=view:AssetViewUserControl}}"/>
@@ -73,8 +73,8 @@
                     </Button>
                   </Grid>
                 </HeaderedContentControl.Header>
-                <StackPanel Background="Transparent" Width="{Binding TileThumbnailSize, RelativeSource={RelativeSource AncestorType=view:AssetViewUserControl}}" Height="48">
-                  <DockPanel HorizontalAlignment="Center" LastChildFill="False">
+                <StackPanel Margin="4" Background="Transparent" Width="{Binding TileThumbnailSize, RelativeSource={RelativeSource AncestorType=view:AssetViewUserControl}}" Height="48">
+                  <DockPanel Background="Transparent" HorizontalAlignment="Center" LastChildFill="False">
                     <TextBlock DockPanel.Dock="Right" Text="{Binding IsDirty, Converter={sd:BoolToParam}, ConverterParameter=*}" HorizontalAlignment="Center"
                                VerticalAlignment="Bottom" TextAlignment="Center" TextTrimming="CharacterEllipsis"/>
                     <TextBlock Text="{Binding Name, Converter={cvt:NameBreakingLine}}" TextAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" MaxHeight="32"/>
@@ -129,8 +129,8 @@
               <HeaderedContentControl>
                 <HeaderedContentControl.Header>
                   <Grid>
-                    <Border BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="2" CornerRadius="3" Margin="0,3,0,0">
-                      <Image Source="{Binding ThumbnailData.Presenter, Mode=OneWay}" RenderOptions.BitmapScalingMode="Linear"
+                    <Border BorderBrush="Transparent" BorderThickness="2" CornerRadius="3" Margin="0,3,0,0">
+                      <Image  Source="{Binding ThumbnailData.Presenter, Mode=OneWay}" RenderOptions.BitmapScalingMode="Linear"
                              Width="{Binding TileThumbnailSize, RelativeSource={RelativeSource AncestorType=view:AssetViewUserControl}}"
                              Height="{Binding TileThumbnailSize, RelativeSource={RelativeSource AncestorType=view:AssetViewUserControl}}"/>
                     </Border>
@@ -160,7 +160,7 @@
             <controls:EditableContentListBox.ItemContainerStyle>
               <Style TargetType="controls:EditableContentListBoxItem" BasedOn="{StaticResource {x:Type controls:EditableContentListBoxItem}}" d:DataContext="{d:DesignInstance viewModel:AssetViewModel}">
                 <Setter Property="CanEdit" Value="{Binding IsLocked, Converter={sd:InvertBool}}"/>
-                <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+                <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="sd:Interaction.Behaviors">
                   <Setter.Value>
                     <sd:BehaviorCollection>
@@ -197,7 +197,7 @@
                       ToolTip="{sd:Localize Add an asset to this location, Context=ToolTip}" status:ToolTipHelper.Status="{Binding Session.Editor.Status}"
                       Visibility="{Binding CanAddAssets, ElementName=AssetView, Converter={sd:VisibleOrCollapsed}}">
           <StackPanel Orientation="Horizontal">
-            <Image Source="{StaticResource ImageNewAsset}" />
+            <Image MaxHeight="16" MaxWidth="16" Source="{StaticResource ImageNewAsset}" />
             <TextBlock Text="{sd:Localize Add asset}" Margin="2,2,4,2" VerticalAlignment="Center"/>
           </StackPanel>
           <i:Interaction.Behaviors>
@@ -225,7 +225,7 @@
             <TextBlock DockPanel.Dock="Right" Margin="3,0" Visibility="{Binding Session.SourceTracker.AssetsToUpdate.Count, Converter={sd:Chained {sd:NumericToBool}, {sd:VisibleOrCollapsed}}}"
                        Text="{Binding Session.SourceTracker.AssetsToUpdate.Count, StringFormat=({0})}" VerticalAlignment="Center" />
             <Grid>
-              <Image Source="{StaticResource UpdateAllAssetsWithModifiedSource}"/>
+              <Image Width="16" Height="16" Source="{StaticResource UpdateAllAssetsWithModifiedSource}"/>
               <Rectangle Fill="{StaticResource NormalBrush}" Visibility="{Binding Session.SourceTracker.AssetsToUpdate.Count, Converter={sd:Chained {sd:NumericToBool}, {sd:VisibleOrCollapsed}}}">
                 <Rectangle.OpacityMask>
                   <ImageBrush ImageSource="{StaticResource UpdateAllAssetsWithModifiedSource}"/>
@@ -251,7 +251,7 @@
             <TextBlock DockPanel.Dock="Right" Margin="3,0" Visibility="{Binding Session.ImportEffectLogPendingCount, Converter={sd:Chained {sd:IsGreater}, {sd:VisibleOrCollapsed},  Parameter1={sd:Double 0}}}"
                        Text="{Binding Session.ImportEffectLogPendingCount, StringFormat=({0})}" VerticalAlignment="Center" />
             <Grid>
-              <Image Source="{StaticResource ImageReimportEffects}"/>
+              <Image Width="16" Height="16" Source="{StaticResource ImageReimportEffects}"/>
               <Rectangle Fill="{StaticResource NormalBrush}" Visibility="{Binding Session.ImportEffectLogPendingCount, Converter={sd:Chained {sd:IsGreater}, {sd:VisibleOrCollapsed},  Parameter1={sd:Double 0}}}">
                 <Rectangle.OpacityMask>
                   <ImageBrush ImageSource="{StaticResource ImageReimportEffects}"/>
@@ -273,14 +273,14 @@
         <!--  EDIT  -->
         <Button Command="{Binding Session.EditSelectedContentCommand}" Visibility="{Binding CanEditAssets, ElementName=AssetView, Converter={sd:VisibleOrCollapsed}}"
                 ToolTip="{sd:ToolTip {sd:Localize Open asset in dedicated editor, Context=ToolTip}, {x:Static strings:KeyGestures.EditAsset}}" status:ToolTipHelper.Status="{Binding Session.Editor.Status}" ToolTipService.ShowOnDisabled="True">
-          <Image Source="{StaticResource ImageEditAsset}" />
+          <Image Width="16" Height="16" Source="{StaticResource ImageEditAsset}" />
         </Button>
         <Separator Visibility="{Binding CanEditAssets, ElementName=AssetView, Converter={sd:VisibleOrCollapsed}}" />
         <!-- VIEW OPTIONS -->
         <Menu Background="Transparent">
           <MenuItem StaysOpenOnClick="True" Style="{StaticResource ToolBarIconMenuItemStyle}">
             <MenuItem.Icon>
-              <Image Source="{StaticResource ImageView}" MaxHeight="24" MaxWidth="24"
+              <Image Source="{StaticResource ImageView}" MaxHeight="16" MaxWidth="16"
                      ToolTip="{sd:Localize Asset view options, Context=ToolTip}" status:ToolTipHelper.Status="{Binding Session.Editor.Status}" ToolTipService.ShowOnDisabled="True"/>
             </MenuItem.Icon>
             <MenuItem.Resources>
@@ -317,12 +317,12 @@
                   <Button DockPanel.Dock="Right" Margin="4 0 0 0" Background="Transparent"
                           Command="view:AssetViewUserControl.ZoomInCommand"
                           ToolTip="{sd:Localize Zoom in, Context=ToolTip}" status:ToolTipHelper.Status="{Binding Session.Editor.Status}" ToolTipService.ShowOnDisabled="True">
-                    <Image Source="{StaticResource ImageZoomIn}"/>
+                    <Image Width="16" Height="16" Source="{StaticResource ImageZoomIn}"/>
                   </Button>
                   <Button DockPanel.Dock="Right" Background="Transparent"
                           Command="view:AssetViewUserControl.ZoomOutCommand"
                           ToolTip="{sd:Localize Zoom out, Context=ToolTip}" status:ToolTipHelper.Status="{Binding Session.Editor.Status}" ToolTipService.ShowOnDisabled="True">
-                    <Image Source="{StaticResource ImageZoomOut}"/>
+                    <Image Width="16" Height="16" Source="{StaticResource ImageZoomOut}"/>
                   </Button>
                 </DockPanel>
               </MenuItem.Header>
@@ -331,7 +331,7 @@
                   <view:SetContentTemplateCommand Target="{x:Reference AssetViewPresenter}"/>
                 </MenuItem.Command>
                 <MenuItem.Icon>
-                  <Image Grid.Column="0" Source="{StaticResource ImageShowTiles}"/>
+                  <Image Width="16" Height="16" Grid.Column="0" Source="{StaticResource ImageShowTiles}"/>
                 </MenuItem.Icon>
               </MenuItem>
             </MenuItem>
@@ -370,7 +370,7 @@
         </sd:SearchComboBox>
         <Button Command="{Binding ClearAssetFiltersCommand}" Visibility="{Binding CurrentAssetFilters.Count, Converter={sd:Chained {sd:NumericToBool}, {sd:VisibleOrCollapsed}}}"
                 ToolTip="{sd:Localize Clear filters, Context=ToolTip}" status:ToolTipHelper.Status="{Binding Session.Editor.Status}" ToolTipService.ShowOnDisabled="True">
-          <Image Source="{StaticResource ImageClearFilters}"/>
+          <Image Width="16" Height="16" Source="{StaticResource ImageClearFilters}"/>
         </Button>
       </ToolBar>
       <!--  FILTER TAGS  -->

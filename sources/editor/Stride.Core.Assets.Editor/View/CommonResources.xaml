@@ -27,7 +27,7 @@
     <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}" />
   </Style>
 
-  <SolidColorBrush x:Key="EmphasisColorBrush" Color="#316B8F"/>
+  <SolidColorBrush x:Key="EmphasisColorBrush" Color="#282c33"/>
 
   <!-- STYLE USED FOR TOOLBAR BUTTONS -->
   <Style x:Key="ToolBarIconMenuItemStyle" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
@@ -204,7 +204,7 @@
     <view:TreeViewTemplateSelector.PackageTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding Content}" DataType="viewModel:PackageViewModel">
         <StackPanel Orientation="Horizontal" ToolTip="{Binding PackagePath, Converter={sd:UDirectoryToString}}">
-          <Image Source="{StaticResource ImagePackage}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" Source="{StaticResource ImagePackage}" Margin="0,0,5,0"/>
           <TextBlock x:Name="PackageText">
                         <Run Text="{Binding Name, Mode=OneWay}"/><Run Text="{Binding IsDirty, Mode=OneWay, Converter={sd:BoolToParam}, ConverterParameter=*}"/>
                         <Run Text="{Binding IsLoaded, Mode=OneWay, Converter={sd:Chained {sd:InvertBool}, {sd:BoolToParam}, Parameter2=(Errors)}}"/>
@@ -220,7 +220,7 @@
     <view:TreeViewTemplateSelector.AssetMountPointTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding SubDirectories}" DataType="viewModel:AssetMountPointViewModel">
         <StackPanel Orientation="Horizontal">
-          <Image x:Name="DirectoryImage" Source="{StaticResource ImageRootFolder}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" x:Name="DirectoryImage" Source="{StaticResource ImageRootFolder}" Margin="0,0,5,0"/>
           <TextBlock>
                         <Run Text="{Binding Name, Mode=OneWay}"/><Run Text="{Binding IsDirty, Mode=OneWay, Converter={sd:BoolToParam}, ConverterParameter=*}"/>
           </TextBlock>
@@ -230,7 +230,7 @@
     <view:TreeViewTemplateSelector.DirectoryTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding SubDirectories}" DataType="viewModel:DirectoryViewModel">
         <StackPanel Orientation="Horizontal">
-          <Image x:Name="DirectoryImage" Source="{StaticResource ImageFolder}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" x:Name="DirectoryImage" Source="{StaticResource ImageFolder}" Margin="0,0,5,0"/>
           <TextBlock>
                         <Run Text="{Binding Name, Mode=OneWay}"/><Run Text="{Binding IsDirty, Mode=OneWay, Converter={sd:BoolToParam}, ConverterParameter=*}"/>
           </TextBlock>
@@ -240,7 +240,7 @@
     <view:TreeViewTemplateSelector.DependencyCategoryTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding Content}" DataType="viewModel:ICategoryViewModel">
         <StackPanel Orientation="Horizontal">
-          <Image Source="{StaticResource ImageDepsRoot}" Margin="0,0,5,0"/>
+          <Image Source="{StaticResource ImageDepsRoot}" Margin="0,0,5,0"  MaxWidth="16" MaxHeight="16"/>
           <TextBlock>
                         <Run Text="{Binding Name, Mode=OneWay}"/><Run Text="{Binding IsDirty, Mode=OneWay, Converter={sd:BoolToParam}, ConverterParameter=*}"/>
           </TextBlock>
@@ -265,7 +265,7 @@
     <view:TreeViewTemplateSelector.ProjectCodeTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding SubDirectories}" DataType="viewModel:ProjectCodeViewModel">
         <StackPanel Orientation="Horizontal">
-          <Image x:Name="DirectoryImage" Source="{StaticResource ImageRootFolder}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" x:Name="DirectoryImage" Source="{StaticResource ImageRootFolder}" Margin="0,0,5,0"/>
           <TextBlock>
                         <Run Text="{Binding Name, Mode=OneWay}"/><Run Text="{Binding IsDirty, Mode=OneWay, Converter={sd:BoolToParam}, ConverterParameter=*}"/>
           </TextBlock>
@@ -275,7 +275,7 @@
     <view:TreeViewTemplateSelector.PackageReferenceTemplate>
       <DataTemplate DataType="viewModel:PackageReferenceViewModel">
         <StackPanel Orientation="Horizontal">
-          <Image Source="{StaticResource ImagePackageReference}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" Source="{StaticResource ImagePackageReference}" Margin="0,0,5,0"/>
           <TextBlock Text="{Binding Name, Mode=OneWay}"/>
         </StackPanel>
       </DataTemplate>
@@ -286,7 +286,7 @@
     <view:TreeViewTemplateSelector.PackageTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding AssetMountPoint.SubDirectories}" DataType="viewModel:PackageViewModel">
         <StackPanel Orientation="Horizontal" Margin="0,2">
-          <Image Source="{StaticResource ImagePackage}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" Source="{StaticResource ImagePackage}" Margin="0,0,5,0"/>
           <sd:TextBox Text="{Binding Name}" GetFocusOnLoad="True" SelectAllOnFocus="True" ValidateOnLostFocus="True"/>
         </StackPanel>
       </HierarchicalDataTemplate>
@@ -294,7 +294,7 @@
     <view:TreeViewTemplateSelector.AssetMountPointTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding SubDirectories}" DataType="viewModel:AssetMountPointViewModel">
         <StackPanel Orientation="Horizontal" Margin="0,2">
-          <Image Source="{StaticResource ImageRootFolder}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" Source="{StaticResource ImageRootFolder}" Margin="0,0,5,0"/>
           <sd:TextBox Text="{Binding Name}" GetFocusOnLoad="True" SelectAllOnFocus="True" ValidateOnLostFocus="True"/>
         </StackPanel>
       </HierarchicalDataTemplate>
@@ -302,7 +302,7 @@
     <view:TreeViewTemplateSelector.DirectoryTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding SubDirectories}" DataType="viewModel:DirectoryViewModel">
         <StackPanel Orientation="Horizontal" Margin="0,2">
-          <Image Source="{StaticResource ImageFolder}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" Source="{StaticResource ImageFolder}" Margin="0,0,5,0"/>
           <sd:TextBox Text="{Binding Name}" GetFocusOnLoad="True" SelectAllOnFocus="True" ValidateOnLostFocus="True"/>
         </StackPanel>
       </HierarchicalDataTemplate>
@@ -310,7 +310,7 @@
     <view:TreeViewTemplateSelector.DependencyCategoryTemplate>
       <HierarchicalDataTemplate ItemsSource="{Binding Content}" DataType="viewModel:ICategoryViewModel">
         <StackPanel Orientation="Horizontal" Margin="0,2">
-          <Image Source="{StaticResource ImageDepsRoot}" Margin="0,0,5,0"/>
+          <Image  MaxWidth="16" MaxHeight="16" Source="{StaticResource ImageDepsRoot}" Margin="0,0,5,0"/>
           <sd:TextBox Text="{Binding Name}" GetFocusOnLoad="True" SelectAllOnFocus="True" ValidateOnLostFocus="True"/>
         </StackPanel>
       </HierarchicalDataTemplate>
