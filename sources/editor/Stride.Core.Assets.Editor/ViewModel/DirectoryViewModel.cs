@@ -92,7 +92,7 @@ namespace Stride.Core.Assets.Editor.ViewModel
 
         private static ThumbnailData GetFolderThumbnail(IDispatcherService dispatcher)
         {
-            const string assetKey = "FolderIconAlfredo";
+            const string assetKey = "FolderIcon";
             var objectId = ObjectId.FromObject(assetKey);
             var data = new ResourceThumbnailData(objectId, assetKey);
             data.PrepareForPresentation(dispatcher).Forget();
