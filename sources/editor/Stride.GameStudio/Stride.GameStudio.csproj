@@ -90,8 +90,10 @@
   </ItemGroup>
   <!-- Resources -->
   <ItemGroup>
+    <Resource Include="Images\*.svg" />
     <Resource Include="Images\*.png" />
     <Resource Include="Resources\**\*.png" />
+    <Resource Include="Resources\**\*.svg" />
     <Resource Include="Resources\GameStudio.ico" />
     <Compile Update="Resources\Strings\KeyGestures.Designer.cs">
       <DependentUpon>KeyGestures.resx</DependentUpon>

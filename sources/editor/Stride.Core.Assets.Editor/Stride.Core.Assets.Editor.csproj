@@ -44,8 +44,9 @@
   <!-- Resources -->
   <ItemGroup>
     <Resource Include="Resources\Icons\*.png" />
+    <Resource Include="Resources\Icons\*.svg" />
     <Resource Include="Resources\Images\default-template-icon.png" />
-    <EmbeddedResource Include="Resources\Images\folder_128.png" />
+    <EmbeddedResource Include="Resources\Images\folder.svg" />
     <Compile Update="Resources\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
