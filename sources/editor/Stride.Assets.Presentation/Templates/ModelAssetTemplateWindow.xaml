@@ -23,6 +23,10 @@
     </Border>
     <Border Margin="20,10,20,20">
       <StackPanel>
+
+        <CheckBox Content="{sd:Localize Generate lods, Context=Button}" IsChecked="{Binding GenerateLods}" Margin="5"/>
+        <TextBox  Margin="5" PreviewTextInput="NumberValidationTextBox" Text="{Binding LodLevels}" MaxLength="1" />
+
         <CheckBox Content="{sd:Localize Import materials, Context=Button}" IsChecked="{Binding ImportMaterials}" Margin="5"/>
         <CheckBox Content="{sd:Localize Deduplicate materials, Context=Button}" IsChecked="{Binding DeduplicateMaterials}" Margin="5" Visibility="{Binding ShowDeduplicateMaterialsCheckBox, Converter={sd:VisibleOrCollapsed}}"/>
         <TextBlock Text="{sd:Localize Warning\: Deduplicate materials is currently not supported for FBX files}" Margin="5" Visibility="{Binding ShowFbxDedupeNotSupportedWarning, Converter={sd:VisibleOrCollapsed}}"/>
