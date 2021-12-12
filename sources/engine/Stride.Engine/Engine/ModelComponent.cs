@@ -163,6 +163,29 @@ namespace Stride.Engine
         [DataMemberIgnore]
         public BoundingSphere BoundingSphere;
 
+
+
+        /// <summary>
+        /// Gets the materials; non-null ones will override materials from <see cref="Stride.Rendering.Model.Materials"/> (same slots should be used).
+        /// </summary>
+        /// <value>
+        /// The materials overriding <see cref="Stride.Rendering.Model.Materials"/> ones.
+        /// </value>
+        /// <userdoc>The list of materials to use with the model. This list overrides the default materials of the model.</userdoc>
+        [DataMember(50)]
+        [Category]
+        [MemberCollection(ReadOnly = true)]
+        public IndexingDictionary<Model> Lods { get; } = new IndexingDictionary<Model>();
+
+        /// <summary>
+        /// Gets the bounding sphere in world space.
+        /// </summary>
+        /// <value>The bounding sphere.</value>
+        [DataMember(60)]
+        [DefaultValue(1.0f)]
+        public float LodBias { get; set; } = 1.0f;
+
+
         /// <summary>
         /// Gets the material at the specified index. If the material is not overriden by this component, it will try to get it from <see cref="Stride.Rendering.Model.Materials"/>
         /// </summary>

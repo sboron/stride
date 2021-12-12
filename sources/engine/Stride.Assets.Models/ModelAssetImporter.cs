@@ -15,12 +15,15 @@ using Stride.Assets.Materials;
 using Stride.Assets.Textures;
 using Stride.Rendering;
 using Stride.Importer.Common;
+using Stride.Core.BuildEngine;
 
 namespace Stride.Assets.Models
 {
     public abstract class ModelAssetImporter : AssetImporterBase
     {
         public static readonly PropertyKey<bool> DeduplicateMaterialsKey = new PropertyKey<bool>("DeduplicateMaterials", typeof(ModelAssetImporter));
+        public static readonly PropertyKey<int> LodLevelsKey = new PropertyKey<int>("LodLevels", typeof(ModelAssetImporter));
+        public static readonly PropertyKey<bool> GenerateLodsKey = new PropertyKey<bool>("GenerateLods", typeof(ModelAssetImporter));
 
         public override IEnumerable<Type> RootAssetTypes
         {
@@ -38,6 +41,7 @@ namespace Stride.Assets.Models
             {
                 yield return typeof(MaterialAsset);
                 yield return typeof(TextureAsset);
+                yield return typeof(ModelLodAsset);
             }
         }
 
@@ -70,16 +74,21 @@ namespace Stride.Assets.Models
         {
             var rawAssetReferences = new List<AssetItem>(); // the asset references without subdirectory path
 
+            if (!importParameters.InputParameters.TryGet(LodLevelsKey, out var lodLevels))
+                lodLevels = 0;
+
+            if (!importParameters.InputParameters.TryGet(GenerateLodsKey, out var generateLods))
+                generateLods = false;
+
             var entityInfo = GetEntityInfo(localPath, importParameters.Logger, importParameters);
             if (entityInfo == null)
                 return rawAssetReferences;
 
+
             //var isImportingEntity = importParameters.IsTypeSelectedForOutput<PrefabAsset>();
 
             var isImportingModel = importParameters.IsTypeSelectedForOutput<ModelAsset>();
-
             var isImportingMaterial = importParameters.IsTypeSelectedForOutput<MaterialAsset>();
-
             var isImportingTexture = importParameters.IsTypeSelectedForOutput<TextureAsset>();
 
             // 1. Textures
@@ -113,13 +122,13 @@ namespace Stride.Assets.Models
             // 5. Model
             if (isImportingModel)
             {
-                ImportModel(rawAssetReferences, localPath, localPath, entityInfo, false, skeletonAsset);
+                ImportModel(importParameters.Logger, rawAssetReferences, localPath, localPath, entityInfo, false, skeletonAsset, generateLods ? lodLevels : 0 );
             }
 
             return rawAssetReferences;
         }
 
-        private static AssetItem ImportSkeleton(List<AssetItem> assetReferences, UFile assetSource, UFile localPath, EntityInfo entityInfo)
+        private AssetItem ImportSkeleton(List<AssetItem> assetReferences, UFile assetSource, UFile localPath, EntityInfo entityInfo)
         {
             var asset = new SkeletonAsset { Source = assetSource };
 
@@ -141,7 +150,7 @@ namespace Stride.Assets.Models
             return assetItem;
         }
 
-        private static void ImportAnimation(List<AssetItem> assetReferences, UFile localPath, List<string> animationNodes, bool shouldPostFixName, AssetItem skeletonAsset, TimeSpan animationStartTime, TimeSpan animationEndTime)
+        private  void ImportAnimation(List<AssetItem> assetReferences, UFile localPath, List<string> animationNodes, bool shouldPostFixName, AssetItem skeletonAsset, TimeSpan animationStartTime, TimeSpan animationEndTime)
         {
             if (animationNodes != null && animationNodes.Count > 0)
             {
@@ -157,10 +166,9 @@ namespace Stride.Assets.Models
             }
         }
 
-        private static void ImportModel(List<AssetItem> assetReferences, UFile assetSource, UFile localPath, EntityInfo entityInfo, bool shouldPostFixName, AssetItem skeletonAsset)
+        private void ImportModel(Logger logger, List<AssetItem> assetReferences, UFile assetSource, UFile localPath, EntityInfo entityInfo, bool shouldPostFixName, AssetItem skeletonAsset, int lodLevels = 0)
         {
             var asset = new ModelAsset { Source = assetSource };
-
             if (entityInfo.Models != null)
             {
                 var loadedMaterials = assetReferences.Where(x => x.Asset is MaterialAsset).ToList();
@@ -190,11 +198,39 @@ namespace Stride.Assets.Models
             if (skeletonAsset != null)
                 asset.Skeleton = AttachedReferenceManager.CreateProxyObject<Skeleton>(skeletonAsset.Id, skeletonAsset.Location);
 
-            var modelUrl = new UFile(localPath.GetFileNameWithoutExtension() + (shouldPostFixName?" Model": ""));
+            var modelUrl = new UFile(localPath.GetFileNameWithoutExtension() + (shouldPostFixName ? " Model" : ""));
             var assetItem = new AssetItem(modelUrl, asset);
+
+            if(lodLevels > 0)
+            {
+                ImportLods(logger, lodLevels, assetReferences, modelUrl, assetSource, asset, assetItem);
+            }
+
             assetReferences.Add(assetItem);
         }
+   
+        private void ImportLods(Logger logger, int levels, List<AssetItem> assetReferences,  UFile modelUrl, UFile assetSource, ModelAsset asset, AssetItem assetItem)
+        {
+            var lodModelSrc = AttachedReferenceManager.CreateProxyObject<Model>(assetItem.Id, assetItem.Location); ;
 
+            for (int i = 1; i < levels + 1; i++)
+            {
+                var newLodAsset = new ModelLodAsset { SrcModel = lodModelSrc, Level = i };
+                foreach(var mat in asset.Materials)
+                {
+                    newLodAsset.Materials.Add(mat);
+                }
+
+                var newUrl = new UFile(modelUrl.FullPath + "_LOD" + i);
+
+                var lodAssetItem = new AssetItem(newUrl, newLodAsset);
+                assetReferences.Add(lodAssetItem);
+                
+                var model = AttachedReferenceManager.CreateProxyObject<Model>(lodAssetItem.Id, lodAssetItem.Location);
+                asset.Lods.Add( model);
+            }
+        }
+   
         private static void ImportMaterials(List<AssetItem> assetReferences, Dictionary<string, MaterialAsset> materials)
         {
             if (materials != null)

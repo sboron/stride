@@ -74,6 +74,7 @@ namespace Stride.Assets.Presentation.AssetEditors.EntityHierarchyEditor.ViewMode
                 new AddModelAssetPolicy<ModelAsset>(),
                 new AddModelAssetPolicy<PrefabModelAsset>(),
                 new AddModelAssetPolicy<ProceduralModelAsset>(),
+                new AddModelAssetPolicy<ModelLodAsset>(),
                 new AddPrefabAssetPolicy(),
                 new AddSceneAssetPolicy(),
                 new AddScriptSourceFileAssetPolicy(),

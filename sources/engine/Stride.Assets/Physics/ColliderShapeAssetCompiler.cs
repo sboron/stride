@@ -36,7 +36,7 @@ namespace Stride.Assets.Physics
             foreach (var type in AssetRegistry.GetAssetTypes(typeof(Model)))
             {
                 yield return new BuildDependencyInfo(type, typeof(AssetCompilationContext), BuildDependencyType.CompileContent);
-            }
+            } 
             foreach (var type in AssetRegistry.GetAssetTypes(typeof(Skeleton)))
             {
                 yield return new BuildDependencyInfo(type, typeof(AssetCompilationContext), BuildDependencyType.CompileContent);

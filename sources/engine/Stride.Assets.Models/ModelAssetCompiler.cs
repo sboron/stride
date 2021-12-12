@@ -20,6 +20,7 @@ namespace Stride.Assets.Models
         {
             yield return new BuildDependencyInfo(typeof(SkeletonAsset), typeof(AssetCompilationContext), BuildDependencyType.Runtime | BuildDependencyType.CompileContent);
             yield return new BuildDependencyInfo(typeof(MaterialAsset), typeof(AssetCompilationContext), BuildDependencyType.Runtime);
+            //yield return new BuildDependencyInfo(typeof(ModelLodAsset), typeof(AssetCompilationContext), BuildDependencyType.Runtime);
         }
 
         public override IEnumerable<ObjectUrl> GetInputFiles(AssetItem assetItem)
